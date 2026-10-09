@@ -1,20 +1,30 @@
-import React from 'react';
-import { Text, StyleSheet, View } from 'react-native';
+import React, { useMemo } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { STUDENT, examStamp, VARIANT } from '@constants/student';
 import { COLORS } from '@constants/theme';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function Watermark() {
   const insets = useSafeAreaInsets();
-  // Vị trí nằm DƯỚI (Bottom) vì variant = 1
-  const positionStyle = VARIANT.watermarkAtTop
-    ? { top: insets.top || 10 }
-    : { bottom: insets.bottom + 55 };
+  const bottomInset = Math.max(insets.bottom, 12);
+  const tabBarHeight = 56 + bottomInset;
+
+  const dynamicStyle = useMemo(
+    () => [
+      styles.container,
+      VARIANT.watermarkAtTop ? { top: insets.top } : { bottom: tabBarHeight },
+    ],
+    [insets.top, tabBarHeight],
+  );
+
+  const stampText = `TH2 · ${STUDENT.mssv} · ${
+    STUDENT.hoTen
+  } · #${examStamp()}`;
 
   return (
-    <View style={[styles.container, positionStyle]} pointerEvents="none">
-      <Text style={styles.text}>
-        TH2 · {STUDENT.mssv} · {STUDENT.hoTen} · #{examStamp()}
+    <View style={dynamicStyle} pointerEvents="none">
+      <Text style={styles.text} numberOfLines={1} adjustsFontSizeToFit>
+        {stampText}
       </Text>
     </View>
   );
@@ -25,10 +35,19 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 0,
     right: 0,
+    backgroundColor: 'rgba(219, 234, 254, 0.95)',
+    paddingVertical: 6,
+    paddingHorizontal: 12,
     alignItems: 'center',
-    backgroundColor: 'rgba(191, 219, 254, 0.85)',
-    paddingVertical: 4,
-    zIndex: 9999,
+    justifyContent: 'center',
+    zIndex: 999,
+    elevation: 5,
   },
-  text: { fontSize: 10, color: COLORS.primary, fontWeight: 'bold' },
+  text: {
+    fontSize: 12,
+    fontWeight: 'bold',
+    color: COLORS.primary,
+    textAlign: 'center',
+    width: '100%',
+  },
 });

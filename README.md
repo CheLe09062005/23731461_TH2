@@ -28,7 +28,8 @@ LE QUAY CHE - 23731461 - https://github.com/CheLe09062005/23731461_TH2.git - Sta
 
 ### 2. Màn hình Giỏ hàng (Cart)
 
-![Cart Screen](docs/screenshot-th2-cart.png)
+![Cart Screen](docs/screenshot-th2-cart1.png)
+![Cart Screen](docs/screenshot-th2-cart2.png)
 
 ---
 

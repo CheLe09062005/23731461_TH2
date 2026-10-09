@@ -10,7 +10,7 @@ import {
 import { useCampusLocation } from '@hooks/useCampusLocation';
 import { useLocationStore } from '@stores/locationStore';
 import { useAuthStore } from '@stores/authStore';
-import { STUDENT } from '@constants/student';
+import { STUDENT, examStamp } from '@constants/student';
 import { COLORS } from '@constants/theme';
 
 const formatPrice = (price: number) => {
@@ -59,7 +59,9 @@ export default function MeScreen() {
       {/* Thông tin sinh viên */}
       <View style={styles.userSection}>
         <Text style={styles.userName}>{STUDENT.hoTen}</Text>
-        <Text style={styles.userSub}>{STUDENT.mssv} · #093856</Text>
+        <Text style={styles.userSub}>
+          {STUDENT.mssv} · #{examStamp()}
+        </Text>
       </View>
 
       {/* Card trạng thái Vị trí & Phí ship */}
