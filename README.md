@@ -6,7 +6,7 @@ LE QUAY CHE - 23731461 - https://github.com/CheLe09062005/23731461_TH2.git - Sta
 
 - **Họ và tên:** LE QUAY CHE
 - **MSSV:** 23731461
-- **Mã Stamp:** #093856
+- **Mã Stamp:** #664791
 - **Chữ số cuối MSSV:** 1
 
 ## Cấu Hình Biến Thể (VARIANT - Số cuối = 1)
